@@ -11,7 +11,7 @@ License:	Ruby-alike
 Group:		Development/Languages
 Source0:	http://rubyforge.org/download.php/358/%{tarname}-%{version}.tgz
 # Source0-md5:	49768acdfed8b28f3c75fa5fec6e3f33
-Patch0:	%{name}-mysql.patch
+Patch0:		%{name}-mysql.patch
 URL:		http://activerecord.rubyforge.org/
 BuildRequires:	ruby
 Requires:	ruby
@@ -35,9 +35,9 @@ rdoc --ri --op ri lib
 
 %install
 rm -rf $RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT/{%{ruby_rubylibdir},%{ruby_ridir}}
-cp -a lib/* $RPM_BUILD_ROOT/%{ruby_rubylibdir}
-cp -a ri/ri/* $RPM_BUILD_ROOT/%{ruby_ridir}
+mkdir -p $RPM_BUILD_ROOT{%{ruby_rubylibdir},%{ruby_ridir}}
+cp -a lib/* $RPM_BUILD_ROOT%{ruby_rubylibdir}
+cp -a ri/ri/* $RPM_BUILD_ROOT%{ruby_ridir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -46,4 +46,4 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc doc/*
 %{ruby_rubylibdir}/*
-%{_datadir}/ri/%{ruby_version}/ActiveRecord
+%{ruby_ridir}/ActiveRecord
