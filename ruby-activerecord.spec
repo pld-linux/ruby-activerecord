@@ -14,7 +14,7 @@ Source0:	http://rubyforge.org/download.php/1216/%{tarname}-%{version}.tgz
 uRL:		http://activerecord.rubyonrails.org/
 BuildRequires:	ruby
 Requires:	ruby
-BuildArch:	noarch
+#BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
