@@ -12,6 +12,7 @@ Source0:	http://rubyforge.org/download.php/358/%{tarname}-%{version}.tgz
 # Source0-md5:	49768acdfed8b28f3c75fa5fec6e3f33
 URL:		http://activerecord.rubyforge.org/
 BuildRequires:	ruby
+BuildArchitectures: noarch
 Requires:	ruby
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
