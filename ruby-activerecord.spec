@@ -12,7 +12,7 @@ Group:		Development/Languages
 Source0:	http://rubyforge.org/download.php/358/%{tarname}-%{version}.tgz
 # Source0-md5:	49768acdfed8b28f3c75fa5fec6e3f33
 Patch0:		%{name}-mysql.patch
-URL:		http://activerecord.rubyforge.org/
+uRL:		http://activerecord.rubyonrails.org/
 BuildRequires:	ruby
 Requires:	ruby
 BuildArch:	noarch
@@ -32,6 +32,7 @@ Ruby.
 %build
 rm lib/%{tarname}/fixtures.rb
 rdoc --ri --op ri lib
+rdoc --op rdoc lib
 
 %install
 rm -rf $RPM_BUILD_ROOT
