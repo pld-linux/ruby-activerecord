@@ -1,4 +1,6 @@
 %define	ruby_rubylibdir	%(ruby -r rbconfig -e 'print Config::CONFIG["rubylibdir"]')
+%define	ruby_ridir	%(ruby -r rbconfig -e 'include Config; print File.join(CONFIG["datadir"], "ri", CONFIG["ruby_version"])')
+%define	ruby_version	%(ruby -r rbconfig -e 'print Config::CONFIG["ruby_version"]')
 Summary:	Object-Relational mapping library for Ruby
 Name:		ruby-ActiveRecord
 %define tarname active_record
@@ -20,15 +22,20 @@ Object-Relational mapping library for Ruby
 %setup -q -n %{tarname}-%{version}
 
 %build
+rm lib/%{tarname}/fixtures.rb
+rdoc --ri --op ri lib
 
 %install
 rm -rf $RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT/%{ruby_rubylibdir}
+mkdir -p $RPM_BUILD_ROOT/{%{ruby_rubylibdir},%{ruby_ridir}}
 cp -a lib/* $RPM_BUILD_ROOT/%{ruby_rubylibdir}
+cp -a ri/ri/* $RPM_BUILD_ROOT/%{ruby_ridir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
+%doc doc/*
 %{ruby_rubylibdir}/*
+%{_datadir}/ri/%{ruby_version}/ActiveRecord
