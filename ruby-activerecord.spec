@@ -11,6 +11,7 @@ License:	Ruby-alike
 Group:		Development/Languages
 Source0:	http://rubyforge.org/download.php/358/%{tarname}-%{version}.tgz
 # Source0-md5:	49768acdfed8b28f3c75fa5fec6e3f33
+Patch0:	%{name}-mysql.patch
 URL:		http://activerecord.rubyforge.org/
 BuildRequires:	ruby
 Requires:	ruby
@@ -26,6 +27,7 @@ Ruby.
 
 %prep
 %setup -q -n %{tarname}-%{version}
+%patch0 -p1
 
 %build
 rm lib/%{tarname}/fixtures.rb
