@@ -19,6 +19,7 @@ Source0:	http://rubyforge.org/frs/download.php/3327/%{tarname}-%{version}.tgz
 uRL:		http://activerecord.rubyonrails.org/
 BuildRequires:	ruby
 Requires:	ruby
+Requires: ruby-ActiveSupport
 #BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
