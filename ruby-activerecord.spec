@@ -6,7 +6,7 @@ Summary(pl):	Biblioteka odwzorowañ obiektowo-relacyjnych dla Ruby
 Name:		ruby-ActiveRecord
 %define tarname active_record
 Version:	0.9.3
-Release:	0.1
+Release:	1
 License:	Ruby-alike
 Group:		Development/Languages
 Source0:	http://rubyforge.org/download.php/358/%{tarname}-%{version}.tgz
