@@ -2,22 +2,27 @@
 %define	ruby_ridir	%(ruby -r rbconfig -e 'include Config; print File.join(CONFIG["datadir"], "ri", CONFIG["ruby_version"])')
 %define	ruby_version	%(ruby -r rbconfig -e 'print Config::CONFIG["ruby_version"]')
 Summary:	Object-Relational mapping library for Ruby
+Summary(pl):	Biblioteka odwzorowañ obiektowo-relacyjnych dla Ruby
 Name:		ruby-ActiveRecord
 %define tarname active_record
 Version:	0.5
-Release:	0
+Release:	0.1
 License:	Ruby-alike
 Group:		Development/Languages
 Source0:	http://rubyforge.org/download.php/358/%{tarname}-%{version}.tgz
 # Source0-md5:	49768acdfed8b28f3c75fa5fec6e3f33
 URL:		http://activerecord.rubyforge.org/
 BuildRequires:	ruby
-BuildArchitectures: noarch
 Requires:	ruby
+BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Object-Relational mapping library for Ruby
+This pachage contains Object-Relational mapping library for Ruby.
+
+%description -l pl
+Ten pakiet zawiera bibliotekê odwzorowañ obiektowo-relacyjnych dla
+Ruby.
 
 %prep
 %setup -q -n %{tarname}-%{version}
