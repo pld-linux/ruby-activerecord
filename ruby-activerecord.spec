@@ -34,6 +34,7 @@ Ruby.
 %setup -q -n %{tarname}-%{version}
 
 %build
+rm lib/active_record/vendor -r
 rdoc --ri --op ri lib
 rdoc --op rdoc lib
 
