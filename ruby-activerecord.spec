@@ -1,6 +1,5 @@
 #
 # TODO
-# 
 # - rip out vendor libraries: mysql.rb, sqlite.rb, simple.rb
 #
 %define	ruby_rubylibdir	%(ruby -r rbconfig -e 'print Config::CONFIG["rubylibdir"]')
@@ -16,12 +15,12 @@ License:	Ruby-alike
 Group:		Development/Languages
 Source0:	http://rubyforge.org/frs/download.php/5111/%{tarname}-%{version}.tgz
 # Source0-md5:	caaa795595cb012890a811167f184b3f
-Patch0:	%{name}-sanity.patch
-uRL:		http://activerecord.rubyonrails.org/
+Patch0:		%{name}-sanity.patch
+URL:		http://activerecord.rubyonrails.org/
 BuildRequires:	ruby
 Requires:	ruby
-Requires: ruby-ActiveSupport
-Requires: ruby-transaction-simple
+Requires:	ruby-ActiveSupport
+Requires:	ruby-transaction-simple
 #BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
