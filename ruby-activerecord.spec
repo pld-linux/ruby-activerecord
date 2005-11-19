@@ -2,9 +2,6 @@
 # TODO
 # - rip out vendor libraries: mysql.rb, sqlite.rb, simple.rb
 #
-%define	ruby_rubylibdir	%(ruby -r rbconfig -e 'print Config::CONFIG["rubylibdir"]')
-%define	ruby_ridir	%(ruby -r rbconfig -e 'include Config; print File.join(CONFIG["datadir"], "ri", CONFIG["ruby_version"])')
-%define	ruby_version	%(ruby -r rbconfig -e 'print Config::CONFIG["ruby_version"]')
 Summary:	Object-Relational mapping library for Ruby
 Summary(pl):	Biblioteka odwzorowañ obiektowo-relacyjnych dla Ruby
 Name:		ruby-ActiveRecord
@@ -17,6 +14,7 @@ Source0:	http://rubyforge.org/frs/download.php/6569/%{tarname}-%{version}.tgz
 # Source0-md5:	225d3df8fe7a554dfea1a75e91e2605d
 Patch0:		%{name}-sanity.patch
 URL:		http://activerecord.rubyonrails.org/
+BuildRequires:	rpmbuild(macros) >= 1.263
 BuildRequires:	ruby
 Requires:	ruby
 Requires:	ruby-ActiveSupport
@@ -25,7 +23,7 @@ Requires:	ruby-transaction-simple
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-This pachage contains Object-Relational mapping library for Ruby.
+This package contains Object-Relational mapping library for Ruby.
 
 %description -l pl
 Ten pakiet zawiera bibliotekê odwzorowañ obiektowo-relacyjnych dla
@@ -34,9 +32,9 @@ Ruby.
 %prep
 %setup -q -n %{tarname}-%{version}
 %patch0 -p1
+rm -r lib/active_record/vendor
 
 %build
-rm lib/active_record/vendor -r
 rdoc --ri --op ri lib
 rdoc --op rdoc lib
 
