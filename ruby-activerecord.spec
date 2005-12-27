@@ -7,7 +7,7 @@ Summary(pl):	Biblioteka odwzorowañ obiektowo-relacyjnych dla Ruby
 Name:		ruby-ActiveRecord
 %define tarname activerecord
 Version:	1.12.1
-Release:	1
+Release:	2
 License:	Ruby-alike
 Group:		Development/Languages
 Source0:	http://rubyforge.org/frs/download.php/6569/%{tarname}-%{version}.tgz
@@ -15,8 +15,8 @@ Source0:	http://rubyforge.org/frs/download.php/6569/%{tarname}-%{version}.tgz
 Patch0:		%{name}-sanity.patch
 URL:		http://activerecord.rubyonrails.org/
 BuildRequires:	rpmbuild(macros) >= 1.263
-BuildRequires:	ruby
-Requires:	ruby
+BuildRequires:	ruby-modules
+Requires:	ruby-modules
 Requires:	ruby-ActiveSupport
 Requires:	ruby-transaction-simple
 #BuildArch:	noarch
