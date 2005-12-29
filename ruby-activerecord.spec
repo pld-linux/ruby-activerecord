@@ -14,9 +14,9 @@ Source0:	http://rubyforge.org/frs/download.php/6569/%{tarname}-%{version}.tgz
 # Source0-md5:	225d3df8fe7a554dfea1a75e91e2605d
 Patch0:		%{name}-sanity.patch
 URL:		http://activerecord.rubyonrails.org/
-BuildRequires:	rpmbuild(macros) >= 1.263
+BuildRequires:	rpmbuild(macros) >= 1.277
 BuildRequires:	ruby-modules
-Requires:	ruby-modules
+%ruby_mod_ver_requires_eq
 Requires:	ruby-ActiveSupport
 Requires:	ruby-transaction-simple
 #BuildArch:	noarch
