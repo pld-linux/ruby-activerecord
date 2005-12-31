@@ -16,7 +16,7 @@ Patch0:		%{name}-sanity.patch
 URL:		http://activerecord.rubyonrails.org/
 BuildRequires:	rpmbuild(macros) >= 1.277
 BuildRequires:	ruby-modules
-%ruby_mod_ver_requires_eq
+%{?ruby_mod_ver_requires_eq}
 Requires:	ruby-ActiveSupport
 Requires:	ruby-transaction-simple
 #BuildArch:	noarch
