@@ -6,12 +6,12 @@ Summary:	Object-Relational mapping library for Ruby
 Summary(pl):	Biblioteka odwzorowañ obiektowo-relacyjnych dla Ruby
 Name:		ruby-ActiveRecord
 %define tarname activerecord
-Version:	1.14.3
+Version:	1.14.4
 Release:	1
 License:	Ruby-alike
 Group:		Development/Languages
-Source0:	http://rubyforge.org/frs/download.php/11252/%{tarname}-%{version}.tgz
-# Source0-md5:	0f1668d447a1cd1683b2903020ea213d
+Source0:	http://rubyforge.org/frs/download.php/12246/%{tarname}-%{version}.tgz
+# Source0-md5:	ce66299a7fe99fdaf2c9747e850560b6
 Patch0:		%{name}-sanity.patch
 URL:		http://activerecord.rubyonrails.org/
 BuildRequires:	rpmbuild(macros) >= 1.277
