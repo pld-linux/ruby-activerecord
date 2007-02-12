@@ -3,7 +3,7 @@
 # - rip out vendor libraries: mysql.rb, sqlite.rb, simple.rb
 #
 Summary:	Object-Relational mapping library for Ruby
-Summary(pl.UTF-8):   Biblioteka odwzorowań obiektowo-relacyjnych dla Ruby
+Summary(pl.UTF-8):	Biblioteka odwzorowań obiektowo-relacyjnych dla Ruby
 Name:		ruby-ActiveRecord
 %define tarname activerecord
 Version:	1.14.4
