@@ -1,9 +1,0 @@
-diff -ur 0-activerecord-1.10.1/lib/active_record/transactions.rb activerecord-1.10.1/lib/active_record/transactions.rb
---- 0-activerecord-1.10.1/lib/active_record/transactions.rb	2005-04-10 11:34:29.000000000 -0600
-+++ activerecord-1.10.1/lib/active_record/transactions.rb	2005-05-11 16:31:56.000000000 -0600
-@@ -1,4 +1,4 @@
--require 'active_record/vendor/simple.rb'
-+require 'transaction/simple.rb'
- Transaction::Simple.send(:remove_method, :transaction)
- require 'thread'
- 
