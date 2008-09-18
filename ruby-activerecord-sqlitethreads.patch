@@ -1,0 +1,22 @@
+diff -Nur activerecord-2.0.1.orig/lib/active_record/connection_adapters/sqlite_adapter.rb activerecord-2.0.1.sqlitethreads/lib/active_record/connection_adapters/sqlite_adapter.rb
+--- activerecord-2.0.1.orig/lib/active_record/connection_adapters/sqlite_adapter.rb	2007-11-07 20:37:16.000000000 -0700
++++ activerecord-2.0.1.sqlitethreads/lib/active_record/connection_adapters/sqlite_adapter.rb	2008-08-14 17:25:04.000000000 -0600
+@@ -72,6 +72,7 @@
+     #
+     # * <tt>:database</tt> -- Path to the database file.
+     class SQLiteAdapter < AbstractAdapter
++			@@mutex = Mutex.new
+       def adapter_name #:nodoc:
+         'SQLite'
+       end
+@@ -129,7 +130,9 @@
+       # DATABASE STATEMENTS ======================================
+ 
+       def execute(sql, name = nil) #:nodoc:
+-        catch_schema_changes { log(sql, name) { @connection.execute(sql) } }
++				@@mutex.synchronize do
++					catch_schema_changes { log(sql, name) { @connection.execute(sql) } }
++				end
+       end
+ 
+       def update_sql(sql, name = nil) #:nodoc:
