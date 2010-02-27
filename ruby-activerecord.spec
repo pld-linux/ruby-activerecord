@@ -1,14 +1,15 @@
 # TODO
 # - rip out vendor libraries: mysql.rb, sqlite.rb, simple.rb
 #
+%define pkgname activerecord
 Summary:	Object-Relational mapping library for Ruby
 Summary(pl.UTF-8):	Biblioteka odwzorowań obiektowo-relacyjnych dla Ruby
-Name:		ruby-ActiveRecord
+Name:		ruby-%{pkgname}
 Version:	2.0.5
 Release:	1
 License:	Ruby-alike
 Group:		Development/Languages
-Source0:	http://rubyforge.org/frs/download.php/45356/activerecord-%{version}.tgz
+Source0:	http://rubyforge.org/frs/download.php/45356/%{pkgname}-%{version}.tgz
 # Source0-md5:	66f03d75467fdf589daa59a93ff84001
 Patch0:		%{name}-sqlitethreads.patch
 Patch1:		%{name}-rubygems.patch
@@ -17,8 +18,9 @@ BuildRequires:	rpmbuild(macros) >= 1.277
 BuildRequires:	ruby >= 1:1.8.6
 BuildRequires:	ruby-modules
 %{?ruby_mod_ver_requires_eq}
-Requires:	ruby-ActiveSupport >= 2.0.1
+Requires:	ruby-activesupport >= 2.0.1
 Requires:	ruby-transaction-simple
+Obsoletes:	ruby-ActiveRecord
 #BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -62,7 +64,7 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{ruby_rubylibdir},%{ruby_ridir},%{ruby_rdocdir}}
 cp -a lib/* $RPM_BUILD_ROOT%{ruby_rubylibdir}
 cp -a ri/* $RPM_BUILD_ROOT%{ruby_ridir}
-cp -a rdoc $RPM_BUILD_ROOT%{ruby_rdocdir}/%{name}-%{version}-%{release}
+cp -a rdoc $RPM_BUILD_ROOT%{ruby_rdocdir}/%{pkgname}-%{version}-%{release}
 
 rm -f $RPM_BUILD_ROOT%{ruby_ridir}/created.rid
 rm -rf $RPM_BUILD_ROOT%{ruby_ridir}/Fixture
@@ -84,5 +86,5 @@ rm -rf $RPM_BUILD_ROOT
 
 %files rdoc
 %defattr(644,root,root,755)
-%{ruby_rdocdir}/%{name}-%{version}-%{release}
+%{ruby_rdocdir}/%{pkgname}-%{version}-%{release}
 %{ruby_ridir}/ActiveRecord
