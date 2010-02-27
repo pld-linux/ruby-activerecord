@@ -21,6 +21,7 @@ BuildRequires:	ruby-modules
 Requires:	ruby-activesupport >= 2.0.1
 Requires:	ruby-transaction-simple
 Obsoletes:	ruby-ActiveRecord
+Provides:	ruby-ActiveRecord
 #BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
