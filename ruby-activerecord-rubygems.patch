@@ -1,25 +1,21 @@
-diff -Nur activerecord-2.1.0.orig/lib/active_record.rb activerecord-2.1.0.rubygems/lib/active_record.rb
---- activerecord-2.1.0.orig/lib/active_record.rb	2008-05-31 19:52:51.000000000 -0600
-+++ activerecord-2.1.0.rubygems/lib/active_record.rb	2008-08-29 17:02:32.000000000 -0600
-@@ -21,20 +21,7 @@
+diff --git a/lib/active_record.rb b/lib/active_record.rb
+index 2f8c5c7..424faeb 100644
+--- a/lib/active_record.rb
++++ b/lib/active_record.rb
+@@ -21,15 +21,7 @@
  # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  #++
  
--$:.unshift(File.dirname(__FILE__)) unless
--  $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))
--
--unless defined? ActiveSupport
--  active_support_path = File.dirname(__FILE__) + "/../../activesupport/lib"
--  if File.exist?(active_support_path)
--    $:.unshift active_support_path
--    require 'active_support'
--  else
--    require 'rubygems'
--    gem 'activesupport'
+-begin
+-  require 'active_support'
+-rescue LoadError
+-  activesupport_path = "#{File.dirname(__FILE__)}/../../activesupport/lib"
+-  if File.directory?(activesupport_path)
+-    $:.unshift activesupport_path
 -    require 'active_support'
 -  end
 -end
 +require 'active_support'
  
- require 'active_record/base'
- require 'active_record/named_scope'
+ module ActiveRecord
+   # TODO: Review explicit loads to see if they will automatically be handled by the initilizer.

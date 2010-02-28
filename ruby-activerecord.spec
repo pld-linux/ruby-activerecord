@@ -5,14 +5,13 @@
 Summary:	Object-Relational mapping library for Ruby
 Summary(pl.UTF-8):	Biblioteka odwzorowań obiektowo-relacyjnych dla Ruby
 Name:		ruby-%{pkgname}
-Version:	2.0.5
+Version:	2.3.5
 Release:	1
 License:	Ruby-alike
 Group:		Development/Languages
-Source0:	http://rubyforge.org/frs/download.php/45356/%{pkgname}-%{version}.tgz
-# Source0-md5:	66f03d75467fdf589daa59a93ff84001
-Patch0:		%{name}-sqlitethreads.patch
-Patch1:		%{name}-rubygems.patch
+Source0:	http://rubygems.org/downloads/%{pkgname}-%{version}.gem
+# Source0-md5:	48a9ab7fbac97478fac9722fb5e14cda
+Patch0:		%{name}-rubygems.patch
 URL:		http://rubyforge.org/projects/activerecord/
 BuildRequires:	rpmbuild(macros) >= 1.277
 BuildRequires:	ruby >= 1:1.8.6
@@ -48,10 +47,10 @@ Documentation files for ActiveRecord.
 Dokumentacja do biblioteki ActiveRecord.
 
 %prep
-%setup -q -n activerecord-%{version}
+%setup -q -c
+%{__tar} xf %{SOURCE0} -O data.tar.gz | %{__tar} xz
+find -newer README  -o -print | xargs touch --reference %{SOURCE0}
 %patch0 -p1
-%patch1 -p1
-rm -r lib/active_record/vendor
 
 # cleanup backups after patching
 find '(' -name '*~' -o -name '*.orig' ')' -print0 | xargs -0 -r -l512 rm -f
