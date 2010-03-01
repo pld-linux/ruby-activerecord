@@ -17,8 +17,7 @@ BuildRequires:	rpmbuild(macros) >= 1.277
 BuildRequires:	ruby >= 1:1.8.6
 BuildRequires:	ruby-modules
 %{?ruby_mod_ver_requires_eq}
-Requires:	ruby-activesupport >= 2.0.1
-Requires:	ruby-transaction-simple
+Requires:	ruby-activesupport >= 2.3.5
 Obsoletes:	ruby-ActiveRecord
 Provides:	ruby-ActiveRecord
 #BuildArch:	noarch
