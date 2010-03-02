@@ -1,6 +1,3 @@
-# TODO
-# - rip out vendor libraries: mysql.rb, sqlite.rb, simple.rb
-#
 %define pkgname activerecord
 Summary:	Object-Relational mapping library for Ruby
 Summary(pl.UTF-8):	Biblioteka odwzorowań obiektowo-relacyjnych dla Ruby
@@ -45,6 +42,18 @@ Documentation files for ActiveRecord.
 %description rdoc -l pl.UTF-8
 Dokumentacja do biblioteki ActiveRecord.
 
+%package ri
+Summary:	ri documentation for %{pkgname}
+Summary(pl.UTF-8):	Dokumentacja w formacie ri dla %{pkgname}
+Group:		Documentation
+Requires:	ruby
+
+%description ri
+ri documentation for %{pkgname}.
+
+%description ri -l pl.UTF-8
+Dokumentacji w formacie ri dla %{pkgname}.
+
 %prep
 %setup -q -c
 %{__tar} xf %{SOURCE0} -O data.tar.gz | %{__tar} xz
@@ -57,28 +66,23 @@ find '(' -name '*~' -o -name '*.orig' ')' -print0 | xargs -0 -r -l512 rm -f
 %build
 rdoc --ri --op ri lib
 rdoc --op rdoc lib
+rm -rf ri/{Fixture*,I18n,MysqlCompat,PGresult,Test,YAML}
+rm ri/created.rid
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{ruby_rubylibdir},%{ruby_ridir},%{ruby_rdocdir}}
+
 cp -a lib/* $RPM_BUILD_ROOT%{ruby_rubylibdir}
 cp -a ri/* $RPM_BUILD_ROOT%{ruby_ridir}
 cp -a rdoc $RPM_BUILD_ROOT%{ruby_rdocdir}/%{pkgname}-%{version}-%{release}
-
-rm -f $RPM_BUILD_ROOT%{ruby_ridir}/created.rid
-rm -rf $RPM_BUILD_ROOT%{ruby_ridir}/Fixture
-rm -rf $RPM_BUILD_ROOT%{ruby_ridir}/FixtureClassNotFound
-rm -rf $RPM_BUILD_ROOT%{ruby_ridir}/Fixtures
-rm -rf $RPM_BUILD_ROOT%{ruby_ridir}/MysqlCompat
-rm -rf $RPM_BUILD_ROOT%{ruby_ridir}/Test
-rm -rf $RPM_BUILD_ROOT%{ruby_ridir}/YAML
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README
+%doc CHANGELOG README examples
 %{ruby_rubylibdir}/active_record
 %{ruby_rubylibdir}/active_record.rb
 %{ruby_rubylibdir}/activerecord.rb
@@ -86,4 +90,7 @@ rm -rf $RPM_BUILD_ROOT
 %files rdoc
 %defattr(644,root,root,755)
 %{ruby_rdocdir}/%{pkgname}-%{version}-%{release}
+
+%files ri
+%defattr(644,root,root,755)
 %{ruby_ridir}/ActiveRecord
