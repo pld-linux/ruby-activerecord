@@ -2,19 +2,19 @@
 Summary:	Object-Relational mapping library for Ruby
 Summary(pl.UTF-8):	Biblioteka odwzorowań obiektowo-relacyjnych dla Ruby
 Name:		ruby-%{pkgname}
-Version:	3.0.3
+Version:	3.2.19
 Release:	1
 License:	Ruby-alike
 Group:		Development/Languages
 Source0:	http://rubygems.org/downloads/%{pkgname}-%{version}.gem
-# Source0-md5:	4dfaec6d511ad50ede13092f1abadff0
+# Source0-md5:	2e60941e3c5080df05c51de2e2d7b328
 URL:		http://rubyforge.org/projects/activerecord/
 BuildRequires:	rpmbuild(macros) >= 1.277
 BuildRequires:	ruby >= 1:1.8.6
 BuildRequires:	ruby-modules
 %{?ruby_mod_ver_requires_eq}
-Requires:	ruby-activesupport >= 3.0.3
-Requires:	ruby-activemodel >= 3.0.3
+Requires:	ruby-activesupport >= 3.2.0
+Requires:	ruby-activemodel >= 3.2.0
 Obsoletes:	ruby-ActiveRecord
 Provides:	ruby-ActiveRecord
 #BuildArch:	noarch
@@ -55,13 +55,12 @@ ri documentation for %{pkgname}.
 Dokumentacji w formacie ri dla %{pkgname}.
 
 %prep
-%setup -q -c
-%{__tar} xf %{SOURCE0} -O data.tar.gz | %{__tar} xz
-
-# cleanup backups after patching
-find '(' -name '*~' -o -name '*.orig' ')' -print0 | xargs -0 -r -l512 rm -f
+%setup -q -n %{pkgname}-%{version}
 
 %build
+# write .gemspec
+%__gem_helper spec
+
 rdoc --ri --op ri lib
 rdoc --op rdoc lib
 rm -rf ri/{Fixture*,I18n,MysqlCompat,PGresult,Test,YAML}
@@ -75,14 +74,21 @@ cp -a lib/* $RPM_BUILD_ROOT%{ruby_rubylibdir}
 cp -a ri/* $RPM_BUILD_ROOT%{ruby_ridir}
 cp -a rdoc $RPM_BUILD_ROOT%{ruby_rdocdir}/%{pkgname}-%{version}-%{release}
 
+# install gemspec
+install -d $RPM_BUILD_ROOT%{ruby_specdir}
+cp -p %{pkgname}-%{version}.gemspec $RPM_BUILD_ROOT%{ruby_specdir}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc CHANGELOG examples
+%doc CHANGELOG.md README.rdoc examples
 %{ruby_rubylibdir}/active_record
 %{ruby_rubylibdir}/active_record.rb
+%{ruby_rubylibdir}/rails/generators/active_record.rb
+%{ruby_rubylibdir}/rails/generators/active_record
+%{ruby_specdir}/%{pkgname}-%{version}.gemspec
 
 %files rdoc
 %defattr(644,root,root,755)
