@@ -3,25 +3,20 @@ Summary:	Object-Relational mapping library for Ruby
 Summary(pl.UTF-8):	Biblioteka odwzorowań obiektowo-relacyjnych dla Ruby
 Name:		ruby-%{pkgname}
 Version:	3.2.19
-Release:	2
+Release:	3
 License:	Ruby-alike
 Group:		Development/Languages
 Source0:	http://rubygems.org/downloads/%{pkgname}-%{version}.gem
 # Source0-md5:	2e60941e3c5080df05c51de2e2d7b328
 URL:		http://rubyforge.org/projects/activerecord/
-BuildRequires:	rpmbuild(macros) >= 1.277
-BuildRequires:	ruby >= 1:1.8.6
-BuildRequires:	ruby-modules
-%{?ruby_mod_ver_requires_eq}
-Requires:	ruby-activesupport >= 3.2.0
+BuildRequires:	rpm-rubyprov
+BuildRequires:	rpmbuild(macros) >= 1.665
 Requires:	ruby-activemodel >= 3.2.0
-Obsoletes:	ruby-ActiveRecord
+Requires:	ruby-activesupport >= 3.2.0
 Provides:	ruby-ActiveRecord
-#BuildArch:	noarch
+Obsoletes:	ruby-ActiveRecord
+BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-# nothing to be placed there. we're not noarch only because of ruby packaging
-%define		_enable_debug_packages	0
 
 %description
 This package contains Object-Relational mapping library for Ruby.
@@ -65,12 +60,13 @@ rdoc --ri --op ri lib
 rdoc --op rdoc lib
 rm -rf ri/{Fixture*,I18n,MysqlCompat,PGresult,Test,YAML}
 rm ri/created.rid
+rm ri/cache.ri
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{ruby_rubylibdir},%{ruby_ridir},%{ruby_rdocdir}}
+install -d $RPM_BUILD_ROOT{%{ruby_vendorlibdir},%{ruby_ridir},%{ruby_rdocdir}}
 
-cp -a lib/* $RPM_BUILD_ROOT%{ruby_rubylibdir}
+cp -a lib/* $RPM_BUILD_ROOT%{ruby_vendorlibdir}
 cp -a ri/* $RPM_BUILD_ROOT%{ruby_ridir}
 cp -a rdoc $RPM_BUILD_ROOT%{ruby_rdocdir}/%{pkgname}-%{version}-%{release}
 
@@ -84,10 +80,10 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc CHANGELOG.md README.rdoc examples
-%{ruby_rubylibdir}/active_record
-%{ruby_rubylibdir}/active_record.rb
-%{ruby_rubylibdir}/rails/generators/active_record.rb
-%{ruby_rubylibdir}/rails/generators/active_record
+%{ruby_vendorlibdir}/active_record
+%{ruby_vendorlibdir}/active_record.rb
+%{ruby_vendorlibdir}/rails/generators/active_record.rb
+%{ruby_vendorlibdir}/rails/generators/active_record
 %{ruby_specdir}/%{pkgname}-%{version}.gemspec
 
 %files rdoc
