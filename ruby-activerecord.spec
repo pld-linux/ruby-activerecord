@@ -2,17 +2,18 @@
 Summary:	Object-Relational mapping library for Ruby
 Summary(pl.UTF-8):	Biblioteka odwzorowań obiektowo-relacyjnych dla Ruby
 Name:		ruby-%{pkgname}
-Version:	3.2.19
-Release:	5
-License:	Ruby-alike
+Version:	8.1.2
+Release:	1
+License:	MIT
 Group:		Development/Languages
-Source0:	http://rubygems.org/downloads/%{pkgname}-%{version}.gem
-# Source0-md5:	2e60941e3c5080df05c51de2e2d7b328
-URL:		http://rubyforge.org/projects/activerecord/
+Source0:	https://rubygems.org/downloads/%{pkgname}-%{version}.gem
+# Source0-md5:	85092d599f0ad89ba4991e7c46bebbf3
+URL:		https://rubyonrails.org
 BuildRequires:	rpm-rubyprov
 BuildRequires:	rpmbuild(macros) >= 1.665
-Requires:	ruby-activemodel >= 3.2.0
-Requires:	ruby-activesupport >= 3.2.0
+Requires:	ruby-activemodel = %{version}
+Requires:	ruby-activesupport = %{version}
+Requires:	ruby-timeout >= 0.4.0
 Provides:	ruby-ActiveRecord
 Obsoletes:	ruby-ActiveRecord
 BuildArch:	noarch
@@ -58,7 +59,6 @@ Dokumentacji w formacie ri dla %{pkgname}.
 
 rdoc --ri --op ri lib
 rdoc --op rdoc lib
-rm -rf ri/{Fixture*,I18n,MysqlCompat,PGresult,Test,YAML}
 rm ri/created.rid
 rm ri/cache.ri
 
@@ -79,9 +79,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc CHANGELOG.md README.rdoc examples
+%doc CHANGELOG.md README.rdoc
 %{ruby_vendorlibdir}/active_record
 %{ruby_vendorlibdir}/active_record.rb
+%{ruby_vendorlibdir}/arel
+%{ruby_vendorlibdir}/arel.rb
 %{ruby_vendorlibdir}/rails/generators/active_record.rb
 %{ruby_vendorlibdir}/rails/generators/active_record
 %{ruby_specdir}/%{pkgname}-%{version}.gemspec
@@ -93,3 +95,6 @@ rm -rf $RPM_BUILD_ROOT
 %files ri
 %defattr(644,root,root,755)
 %{ruby_ridir}/ActiveRecord
+%{ruby_ridir}/Arel
+%{ruby_ridir}/lib/active_record/railties/page-databases_rake.ri
+%{ruby_ridir}/lib/rails/generators/active_record
